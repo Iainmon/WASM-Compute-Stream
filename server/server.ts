@@ -1,4 +1,4 @@
-import WebSocket from 'ws';
+const WS = require('ws');
 const PORT = process.env.PORT || 3000;
 
 function randomRange(min, max) {
@@ -6,7 +6,7 @@ function randomRange(min, max) {
 }
 
 
-const wss = new WebSocket.Server({ port: PORT });
+const wss = new WS.Server({ port: PORT });
 
 wss.on('connection', function connection(ws) {
     ws.on('message', function incoming() {
