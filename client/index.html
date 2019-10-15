@@ -1,0 +1,28 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="app.js" defer></script>
+</head>
+
+<body>
+    <div class="row justify-content-center">
+        <div class="col col-centered text-center">
+            <br>
+            <h1 class="title" id="calculation-count">0</h1>
+            <br>
+            <h4 class="title">Calculation Threads Running</h4>
+            <br>
+            <button class="btn btn-primary" id="new-calculation-button">Spawn New Calculation</button>
+        </div>
+    </div>
+    <hr>
+    <div class="row justify-content-center">
+        <div id="calculation-buffer" style="width:50%; min-height:200px; max-height:1500px; border:1px solid #ccc;font:16px/26px monospaced;overflow:auto;padding:8px;">
+
+        </div>
+    </div>
+</body>
+
+</html>
