@@ -9,8 +9,8 @@
  (type $FUNCSIG$dd (func (param f64) (result f64)))
  (type $FUNCSIG$ij (func (param i64) (result i32)))
  (type $FUNCSIG$iidi (func (param i32 f64 i32) (result i32)))
- (type $FUNCSIG$vidd (func (param i32 f64 f64)))
  (type $FUNCSIG$did (func (param i32 f64) (result f64)))
+ (type $FUNCSIG$vidd (func (param i32 f64 f64)))
  (type $FUNCSIG$i (func (result i32)))
  (import "env" "abort" (func $~lib/builtins/abort (param i32 i32 i32 i32)))
  (memory $0 1)
@@ -2168,7 +2168,27 @@
   end
   i32.const 0
  )
- (func $assembly/index/_fib (; 32 ;) (type $FUNCSIG$dd) (param $0 f64) (result f64)
+ (func $~lib/map/Map<f64,f64>#get (; 32 ;) (type $FUNCSIG$did) (param $0 i32) (param $1 f64) (result f64)
+  local.get $0
+  local.get $1
+  local.get $1
+  i64.reinterpret_f64
+  call $~lib/util/hash/hash64
+  call $~lib/map/Map<f64,f64>#find
+  local.tee $0
+  i32.eqz
+  if
+   i32.const 376
+   i32.const 432
+   i32.const 111
+   i32.const 16
+   call $~lib/builtins/abort
+   unreachable
+  end
+  local.get $0
+  f64.load offset=8
+ )
+ (func $assembly/index/_fib (; 33 ;) (type $FUNCSIG$dd) (param $0 f64) (result f64)
   local.get $0
   f64.const 1
   f64.le
@@ -2186,7 +2206,7 @@
   call $assembly/index/_fib
   f64.add
  )
- (func $~lib/map/Map<f64,f64>#rehash (; 33 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $~lib/map/Map<f64,f64>#rehash (; 34 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
@@ -2317,7 +2337,7 @@
   local.get $3
   call $~lib/rt/pure/__release
  )
- (func $~lib/map/Map<f64,f64>#set (; 34 ;) (type $FUNCSIG$vidd) (param $0 i32) (param $1 f64) (param $2 f64)
+ (func $~lib/map/Map<f64,f64>#set (; 35 ;) (type $FUNCSIG$vidd) (param $0 i32) (param $1 f64) (param $2 f64)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
@@ -2411,26 +2431,6 @@
    call $~lib/rt/pure/__release
   end
  )
- (func $~lib/map/Map<f64,f64>#get (; 35 ;) (type $FUNCSIG$did) (param $0 i32) (param $1 f64) (result f64)
-  local.get $0
-  local.get $1
-  local.get $1
-  i64.reinterpret_f64
-  call $~lib/util/hash/hash64
-  call $~lib/map/Map<f64,f64>#find
-  local.tee $0
-  i32.eqz
-  if
-   i32.const 376
-   i32.const 432
-   i32.const 111
-   i32.const 16
-   call $~lib/builtins/abort
-   unreachable
-  end
-  local.get $0
-  f64.load offset=8
- )
  (func $assembly/index/fib (; 36 ;) (type $FUNCSIG$dd) (param $0 f64) (result f64)
   global.get $assembly/index/memory
   local.get $0
@@ -2439,7 +2439,9 @@
   call $~lib/util/hash/hash64
   call $~lib/map/Map<f64,f64>#find
   if
+   global.get $assembly/index/memory
    local.get $0
+   call $~lib/map/Map<f64,f64>#get
    return
   end
   global.get $assembly/index/memory

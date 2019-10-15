@@ -9,7 +9,7 @@ export function fib(n: u64): u64 {
 
     // Checks if the pair is memorized
     if (memory.has(n)) {
-        return n;
+        return memory.get(n);
     }
 
     // Saves the value to memory

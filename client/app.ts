@@ -96,7 +96,12 @@ class CalculationManager {
     }
 
     public createNewCalculation() {
-        let connection = new WebSocket(SOCKET_ADDRESS);
+
+        let providedSocketAddress = document.getElementById('ws-server-address')['value'];
+
+        let socketAddress = (providedSocketAddress) ? providedSocketAddress : SOCKET_ADDRESS;
+
+        let connection = new WebSocket(socketAddress);
         let calculation = new Calculation(connection, this.funcReference, this.valueCalculated.bind(this));
         this.calculations.push(calculation);
 
